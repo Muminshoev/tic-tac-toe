@@ -1,4 +1,5 @@
 const cells = document.querySelectorAll(".cell");
+const winner = document.getElementById("winner")
 
 let inputArray = [];
 
@@ -26,7 +27,7 @@ function boarActivate() {
     cells.forEach(i => {
     i.addEventListener("click", () => {
         let cellBody = i;
-        
+        cellBody.innerHTML = ""
         checkCell(cellBody);
 
         cellBody.innerHTML = currentPlayer;
@@ -42,7 +43,7 @@ function boarActivate() {
 
 
 function checkCell(cellBody) {
-    if(cellBody.innerHTML === "X" || cellBody.innerHTML === "O"){
+    if(cellBody.innerHTML === "" ){
         console.log("NO")
         return false
     }
@@ -72,13 +73,19 @@ function checkWin() {
         
 
         if(a !== "" && a === b && a == c){
-            console.log("win")
-            console.log(a)
-            console.log(b)
-            console.log(c)
-           
+           winner.innerHTML = `${a} is a winner`
         }
     }
+    console.log(board)
+    draw()
+}
+
+function draw() {
+    board.forEach(i => {
+        if(i == ""){
+            console.log("draw")
+        }
+    })
 }
 
 gameStart()
